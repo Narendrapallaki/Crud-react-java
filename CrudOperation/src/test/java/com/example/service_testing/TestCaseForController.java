@@ -52,10 +52,10 @@ public class TestCaseForController {
 	   {
 		   // mocking the data 
 		         List<Student> stu=Arrays.asList(
-		        		 new Student(1, "nari", "9676842785"),
-		        		 new Student(5, "raju", "8527847696"));
+		        		 new Student(1, "nari", "9676842785","null"),
+		        		 new Student(5, "raju", "8527847696","null"));
 		         
-		         Mockito.when(serInter.getAllDeta()).thenReturn(stu);
+		         Mockito.when(serInter.getAllData()).thenReturn(stu);
 		         
 		         //testing the controller 
 		         ResponseEntity<List<Student>> response = contro.getAll();
