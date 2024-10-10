@@ -10,6 +10,5 @@ public interface StudentRepo extends CrudRepository<Student, Integer>{
 
 	
 	
-	
 
 }

@@ -24,7 +24,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.example.Entity.Student;
 import com.example.Exception.NoDatafound;
-import com.example.Repositery.Repo;
+
+import com.example.Repositery.StudentRepo;
 import com.example.Service.ServiceInterface;
 
 import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
@@ -35,7 +36,7 @@ public class Student_Testing_Methods {
 	@Autowired
 	private ServiceInterface serviceInterface;
 	@MockBean
-	private Repo repo;
+	private StudentRepo repo;
 
 	@Test
 	public void saveTest() {
@@ -61,23 +62,23 @@ public class Student_Testing_Methods {
 
 	@Test
 	public void fetchByIdTest() {
-		Student s1 = Student.builder().id(6).name("nari").mobile("7385").build();
-		Student s2 = serviceInterface.fetchById(6);
+		Student s1 = Student.builder().id(4).name("nari").mobile("7385").build();
+		Student s2 = serviceInterface.fetchById(4);
 		Assertions.assertEquals(s1, s2);
 	}
 
 	@BeforeEach
 	public void setUp() {
-		Optional<Student> student = Optional.of(new Student(6, "nari", "7385"));
+		Optional<Student> student = Optional.of(new Student(4, "nari", "7385","null"));
 
-		Mockito.when(repo.findById(6)).thenReturn(student);
+		Mockito.when(repo.findById(4)).thenReturn(student);
 	}
 
 	@Test
 	public void updateTest() throws NoDatafound {
-		int id = 6;
+		int id = 4;
 		String result = "user data saved";
-		Student stu = Student.builder().id(6).name("ravi").mobile("9090").build();
+		Student stu = Student.builder().id(4).name("ravi").mobile("9090").build();
 
 		String upsave = serviceInterface.upsave(stu, id);
 		
@@ -89,7 +90,7 @@ public class Student_Testing_Methods {
 	@BeforeEach
 	public void setUp1() {
 
-		List<Student> list = Arrays.asList(new Student(2, "raju", "12345"), new Student(3, "ramu", "78945"));
+		List<Student> list = Arrays.asList(new Student(2, "raju", "12345","null"), new Student(3, "ramu", "78945","null"));
 
 		when(repo.findAll()).thenReturn(list);
 
@@ -98,9 +99,9 @@ public class Student_Testing_Methods {
 	@Test
 	public void getAllTest() {
 
-		List<Student> expected = Arrays.asList(new Student(2, "raju", "12345"), new Student(3, "ramu", "78945"));
+		List<Student> expected = Arrays.asList(new Student(2, "raju", "12345","null"), new Student(3, "ramu", "78945","null"));
 
-		List<Student> result = serviceInterface.getAllDeta();
+		List<Student> result = serviceInterface.getAllData();
 		Assertions.assertEquals(expected, result);
 
 	}

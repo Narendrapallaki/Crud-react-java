@@ -27,7 +27,8 @@ public class Contro {
         return new ResponseEntity<>(sSave, HttpStatus.CREATED);
 
     }
-
+    //this line is for testing working of merge in main branch
+    //
     @GetMapping("/getAll")
     public ResponseEntity<List<Student>> getAll() {
         List<Student> allDeta = inter.getAllData();
